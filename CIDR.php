@@ -5,9 +5,9 @@
  * Utility Functions for IPv4 ip addresses.
  *
  * @author Jonavon Wilcox <jowilcox@vt.edu>
- * @version Sat Jun  6 21:26:48 EDT 2009
- * @copyright Copyright (c) 2009 Jonavon Wilcox
- */
+ * @revision Carlos Guimarães <cvsguimaraes@gmail.com>
+ * @version Wed Mar  12 13:00:00 EDT 2014
+  */
  /**
   * class CIDR.
   * Holds static functions for ip address manipulation.
@@ -45,9 +45,14 @@ class CIDR {
 	 * @return int number of bits set.
 	 */
 	public static function countSetbits($int){
-		$int = $int - (($int >> 1) & 0x55555555);
-		$int = ($int & 0x33333333) + (($int >> 2) & 0x33333333);
-		return (($int + ($int >> 4) & 0xF0F0F0F) * 0x1010101) >> 24;
+		$int = $int & 0xFFFFFFFF;
+		$int = ( $int & 0x55555555 ) + ( ( $int >> 1 ) & 0x55555555 ); 
+		$int = ( $int & 0x33333333 ) + ( ( $int >> 2 ) & 0x33333333 );
+		$int = ( $int & 0x0F0F0F0F ) + ( ( $int >> 4 ) & 0x0F0F0F0F );
+		$int = ( $int & 0x00FF00FF ) + ( ( $int >> 8 ) & 0x00FF00FF );
+		$int = ( $int & 0x0000FFFF ) + ( ( $int >>16 ) & 0x0000FFFF );
+		$int = $int & 0x0000003F;
+		return $int;
 	}
 	
 	/**
@@ -68,6 +73,7 @@ class CIDR {
 	 */
 	public static function validNetMask($netmask){
 		$netmask = ip2long($netmask);
+		if($netmask === false) return false;
 		$neg = ((~(int)$netmask) & 0xFFFFFFFF);
 		return (($neg + 1) & $neg) === 0;
 	}
