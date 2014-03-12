@@ -2,12 +2,13 @@
 /**
  * CIDR.php
  *
- * Utility Functions for IPv4 ip addresses.
- *
+ * Utility Functions for IPv4 ip addresses. 
+ * Supports 64bit PHP 5.5+
  * @author Jonavon Wilcox <jowilcox@vt.edu>
  * @revision Carlos Guimarães <cvsguimaraes@gmail.com>
  * @version Wed Mar  12 13:00:00 EDT 2014
   */
+  
  /**
   * class CIDR.
   * Holds static functions for ip address manipulation.
@@ -30,6 +31,23 @@ class CIDR {
 		return long2ip(-1 << (32 - (int)$int));
 	}
 
+	/**
+	 * method validIP.
+	 * Determine if a ip is valid.
+	 * Usage:
+	 *     CIDR::validIP('0.50.45.50');
+	 * Result:
+	 *     bool(false)
+	 * @param $ipinput String a IPv4 formatted ip address.
+	 * @access public
+	 * @static
+	 * return bool True if a valid netmask.
+	 */
+	public static function validIP($ipinput)
+	{
+		return filter_var($ipinput, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
+	}
+	
 	/**
 	 * method countSetBits.
 	 * Return the number of bits that are set in an integer.
