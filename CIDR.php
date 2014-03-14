@@ -33,7 +33,7 @@ class CIDR {
 
 	/**
 	 * method validIP.
-	 * Determine if a ip is valid.
+	 * Determine if a given input is a valid IPv4 address.
 	 * Usage:
 	 *     CIDR::validIP('0.50.45.50');
 	 * Result:
@@ -41,7 +41,7 @@ class CIDR {
 	 * @param $ipinput String a IPv4 formatted ip address.
 	 * @access public
 	 * @static
-	 * return bool True if a valid netmask.
+	 * @return bool True if the input is valid.
 	 */
 	public static function validIP($ipinput)
 	{
