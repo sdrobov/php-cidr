@@ -3,7 +3,7 @@
  * CIDR.php
  *
  * Utility Functions for IPv4 ip addresses. 
- * Supports 64bit PHP 5.5+
+ * Supports PHP 5.3+ (32 & 64 bit)
  * @author Jonavon Wilcox <jowilcox@vt.edu>
  * @revision Carlos Guimarães <cvsguimaraes@gmail.com>
  * @version Wed Mar  12 13:00:00 EDT 2014
