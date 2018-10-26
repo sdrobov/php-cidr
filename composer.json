@@ -1,0 +1,16 @@
+{
+    "name": "sdrobov/php-cidr",
+    "description": "Several useful functions available for IPv4 addresses",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Drobov",
+            "email": "serch.m@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": ["."]
+    }
+}
